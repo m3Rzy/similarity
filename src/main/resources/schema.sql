@@ -5,6 +5,6 @@ CREATE TABLE IF NOT EXISTS tasks (
     task_title VARCHAR NOT NULL,
     task_status VARCHAR NOT NULL,
     task_created_at TIMESTAMP NOT NULL,
-    task_changed_at TIMESTAMP NOT NULL,
-    task_closed_at TIMESTAMP NOT NULL
+    task_changed_at TIMESTAMP,
+    task_closed_at TIMESTAMP
 );

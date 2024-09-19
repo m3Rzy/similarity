@@ -29,13 +29,13 @@ public class Task {
     private LocalDateTime createdAt;
 
     @Column(name = "task_changed_at")
-    @CreationTimestamp
-//    todo: убрать автоматическое создание времени
+    @Basic
+    @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime changedAt;
 
     @Column(name = "task_closed_at")
-    @CreationTimestamp
-//    todo: убрать автоматическое создание времени
+    @Basic
+    @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime closedAt;
 
     @Override
