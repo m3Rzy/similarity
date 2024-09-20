@@ -40,7 +40,7 @@ public class Task {
 
     @Override
     public String toString() {
-        return "Задача " + id + " — " + title + " была успешно создана сегодня в "
+        return "Задача " + id + " — " + title + " — "
                 + createdAt.format(Constant.dateFormatter);
     }
 }

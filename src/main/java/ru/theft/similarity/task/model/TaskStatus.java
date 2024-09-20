@@ -1,9 +1,8 @@
 package ru.theft.similarity.task.model;
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
-@RequiredArgsConstructor
+@AllArgsConstructor
 @Getter
 public enum TaskStatus {
 
@@ -11,5 +10,5 @@ public enum TaskStatus {
     IN_PROGRESS("В процессе"),
     CLOSED("Закрыт");
 
-    private final String title;
+    private final String statusTitle;
 }

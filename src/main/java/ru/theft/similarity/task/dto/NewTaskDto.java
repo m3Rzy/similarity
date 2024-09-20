@@ -5,7 +5,11 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-@ToString
 public class NewTaskDto {
     private String titleNewTaskDto;
+
+    @Override
+    public String toString() {
+        return "Новая задача — " + titleNewTaskDto;
+    }
 }

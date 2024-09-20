@@ -2,11 +2,11 @@ package ru.theft.similarity.task.controller;
 
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.theft.similarity.task.dto.NewTaskDto;
-import ru.theft.similarity.task.dto.TaskDto;
+import ru.theft.similarity.task.dto.*;
 import ru.theft.similarity.task.mapper.TaskMapper;
-import ru.theft.similarity.task.model.Task;
+import ru.theft.similarity.task.model.*;
 import ru.theft.similarity.task.service.TaskService;
 
 import java.util.List;
@@ -20,19 +20,42 @@ public class TaskController {
     private TaskMapper mapper;
 
     @GetMapping
-    public List<Task> getAllTaskWithPaginationAndSort(
+    public ResponseEntity<List<Task>> getAllTaskWithPaginationAndSort(
             @RequestParam(value = "page", defaultValue = "0") int page,
             @RequestParam(value = "size", defaultValue = "5") int size,
             @RequestParam(value = "sort", required = false) String sortDirection) {
-        return taskService.getAllWithPaginationAndSort(page, size, sortDirection)
-                .stream()
-                .toList();
+        return ResponseEntity
+                .ok(taskService
+                        .getAllWithPaginationAndSort(page, size, sortDirection)
+                        .stream()
+                        .toList());
+    }
+
+    @GetMapping("/{taskId}")
+    public ResponseEntity<TaskDto> getTaskById(@PathVariable long taskId) {
+        return ResponseEntity
+                .ok(taskService.getById(taskId));
+    }
+
+    @PatchMapping("/{taskId}")
+    public ResponseEntity<?> changeTaskStatus(@PathVariable long taskId,
+                                           @RequestParam(value = "status") String statusTitle) {
+        taskService.changeStatus(taskId, statusTitle);
+        return ResponseEntity
+                .ok("Статус задачи успешно изменился!");
+    }
+
+    @DeleteMapping("/{taskId}")
+    public ResponseEntity<?> deleteTaskById(@PathVariable long taskId) {
+        taskService.delete(taskId);
+        return ResponseEntity
+                .ok("Задача была успешно удалена!");
     }
 
     @PostMapping
-    public TaskDto createNewTask(@RequestBody NewTaskDto newTaskDto) {
-        return mapper.mapToDto(taskService.add(newTaskDto));
+    public ResponseEntity<TaskDto> createNewTask(@RequestBody NewTaskDto newTaskDto) {
+        return ResponseEntity
+                .status(201)
+                .body(mapper.mapToDto(taskService.add(newTaskDto)));
     }
-
-//    todo: дописать все контроллеры
 }

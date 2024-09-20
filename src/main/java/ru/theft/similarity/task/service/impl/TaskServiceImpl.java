@@ -10,6 +10,7 @@ import ru.theft.similarity.task.mapper.TaskMapper;
 import ru.theft.similarity.task.model.*;
 import ru.theft.similarity.task.repository.TaskRepository;
 import ru.theft.similarity.task.service.TaskService;
+import ru.theft.similarity.utils.exception.NotFoundException;
 
 import java.time.LocalDateTime;
 
@@ -20,8 +21,6 @@ import static ru.theft.similarity.task.model.TaskStatus.*;
 @Slf4j
 public class TaskServiceImpl implements TaskService {
 
-//    todo: сократить код - taskRepository.findById...
-
     private final TaskRepository taskRepository;
     @Autowired
     private TaskMapper mapper;
@@ -29,22 +28,17 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public Page<Task> getAllWithPaginationAndSort(int page, int size, String sortDirection) {
         log.info("Количество задач: {}", taskRepository.findAll().size());
+
         return taskRepository.findAll(formPaginationAndSort(page, size, sortDirection));
     }
 
     @Override
     public TaskDto getById(long taskId) {
-//        todo: сделать свои exception-классы
-        return taskRepository.findById(taskId)
-                .map(task -> mapper.mapToDto(task))
-                .orElseThrow(() -> new RuntimeException("Задачи с " + taskId + " id не существует!"));
+        return mapper.mapToDto(searchTaskById(taskId));
     }
 
     @Override
     public Task add(NewTaskDto newTaskDto) {
-//        todo: сделать log
-        log.info("{}", newTaskDto);
-
         Task task = Task.builder()
                 .title(newTaskDto.getTitleNewTaskDto())
                 .status(OPEN)
@@ -52,25 +46,30 @@ public class TaskServiceImpl implements TaskService {
                 .changedAt(null)
                 .closedAt(null)
                 .build();
+        log.info("{} была успешно создана!", newTaskDto);
         return taskRepository.save(task);
     }
 
     @Override
-    public void changeStatus(long taskId, TaskStatus status) {
-//        todo: сделать свои exception-классы
-        Task task = taskRepository.findById(taskId)
-                .orElseThrow(() -> new RuntimeException("Задачи с " + taskId + " id не существует!"));
-        task.setStatus(status);
+    public void changeStatus(long taskId, String status) {
+        Task task = searchTaskById(taskId);
+        task.setStatus(TaskStatus.valueOf(status));
+        taskRepository.saveAndFlush(task);
+
         log.info("Статус {} был успешно изменен!", task);
     }
 
     @Override
     public void delete(long taskId) {
-//        todo: сделать свои exception-классы
-        Task task = taskRepository.findById(taskId)
-                .orElseThrow(() -> new RuntimeException("Задачи с " + taskId + " id не существует!"));
+        Task task = searchTaskById(taskId);
         taskRepository.delete(task);
+
         log.info("{} была успешно удалена!", task);
+    }
+
+    private Task searchTaskById(long taskId) {
+        return taskRepository.findById(taskId)
+                .orElseThrow(() -> new NotFoundException("Задачи с " + taskId + " id не существует!"));
     }
 
     private Pageable formPaginationAndSort(int page, int size, String sortDirection) {
