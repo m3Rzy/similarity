@@ -11,6 +11,6 @@ public class ErrorHandler {
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public ErrorResponse handle(NotFoundException e) {
         return new ErrorResponse("Data not found.", HttpStatus.NOT_FOUND.value(),
-                e.getDesc());
+                e.getDescription());
     }
 }
