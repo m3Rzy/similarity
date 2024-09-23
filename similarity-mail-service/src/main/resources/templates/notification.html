@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задача создана</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            margin: 20px;
+        }
+        h1 {
+            color: #4CAF50;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 1rem;
+            color: #333333;
+            margin: 10px 0;
+        }
+        .task-name {
+            font-weight: bold;
+            color: #2C3E50;
+        }
+        .footer {
+            margin-top: 20px;
+            font-size: 0.875rem;
+            color: #999999;
+        }
+
+        /* Адаптивные стили */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+                max-width: 90%;
+            }
+            h1 {
+                font-size: 1.5rem;
+            }
+            p {
+                font-size: 0.95rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 10px;
+            }
+            h1 {
+                font-size: 1.2rem;
+            }
+            p {
+                font-size: 0.85rem;
+            }
+            .footer {
+                font-size: 0.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Задача успешно создана!</h1>
+    <p>Задача с названием <span class="task-name" th:text="${taskName}"></span> была успешно создана и добавлена в список.</p>
+    <div class="footer">
+        &copy; 2024 hoiboi inc. All rights reserved.
+    </div></div>
+</body>
+</html>

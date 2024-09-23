@@ -12,7 +12,14 @@ services:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/similarity
       - SPRING_DATASOURCE_USER=postgres
       - SPRING_DATASOURCE_PASSWORD=123321
-
+  similarity-mail-service:
+    build: ./similarity-mail-service
+    image: similarity-mail-service
+    container_name: similarity-mail-service_container
+    ports:
+      - "8081:8081"
+    depends_on:
+      - similarity-main-service
   db:
     image: postgres:13.7-alpine
     container_name: postgres_container

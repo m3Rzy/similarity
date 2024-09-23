@@ -1,0 +1,17 @@
+server:
+  port: 8081
+spring:
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: hoiboui.business@gmail.com
+    password: "wqrc agqy iwem avbe"
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+          connection timeout: 5000
+          timeout: 5000
+          write timeout: 5000
