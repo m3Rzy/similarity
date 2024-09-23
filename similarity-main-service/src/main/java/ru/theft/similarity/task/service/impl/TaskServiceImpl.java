@@ -12,7 +12,8 @@ import ru.theft.similarity.task.repository.TaskRepository;
 import ru.theft.similarity.task.service.TaskService;
 import ru.theft.similarity.utils.exception.NotFoundException;
 
-import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 
 import static ru.theft.similarity.task.model.TaskStatus.*;
 
@@ -42,7 +43,7 @@ public class TaskServiceImpl implements TaskService {
         Task task = Task.builder()
                 .title(newTaskDto.getTitleNewTaskDto())
                 .status(OPEN)
-                .createdAt(LocalDateTime.now())
+                .createdAt(ZonedDateTime.now(ZoneId.of("Europe/Moscow")).toLocalDateTime())
                 .changedAt(null)
                 .closedAt(null)
                 .build();
