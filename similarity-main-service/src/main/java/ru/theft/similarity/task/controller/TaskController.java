@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 import ru.theft.similarity.task.dto.*;
 import ru.theft.similarity.task.mapper.TaskMapper;
 import ru.theft.similarity.task.model.*;
@@ -54,8 +55,20 @@ public class TaskController {
 
     @PostMapping
     public ResponseEntity<TaskDto> createNewTask(@RequestBody NewTaskDto newTaskDto) {
+        TaskDto taskDto = mapper.mapToDto(taskService.add(newTaskDto));
+
+        RestTemplate restTemplate = new RestTemplate();
+        String emailServiceUrl = "http://similarity-mail-service:8081/email";
+        String recipient = "demeiz@yandex.ru";
+        String subject = "Задача успешно создана!";
+        String taskTitle = taskDto.getTitleTaskDto();
+
+        // Отправляем запрос на email-сервис
+        String emailRequestUrl = emailServiceUrl + "?to=" + recipient + "&subject=" + subject
+                + "&taskTitle=" + taskTitle;
+        restTemplate.postForEntity(emailRequestUrl, null, String.class);
         return ResponseEntity
                 .status(201)
-                .body(mapper.mapToDto(taskService.add(newTaskDto)));
+                .body(taskDto);
     }
 }

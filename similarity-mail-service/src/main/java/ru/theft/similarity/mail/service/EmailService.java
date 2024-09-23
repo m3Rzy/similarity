@@ -15,13 +15,15 @@ public class EmailService {
     private JavaMailSender mailSender;
     private SpringTemplateEngine templateEngine;
 
-    public void sendHtmlMessage(String to, String subject, String titleTemplate) throws MessagingException {
+    public void sendHtmlMessage(String to, String subject, String titleTemplate, String taskTitle)
+            throws MessagingException {
         MimeMessage message = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
 
         helper.setTo(to);
         helper.setSubject(subject);
         Context context = new Context();
+        context.setVariable("taskName", taskTitle);
 
         String htmlContent = templateEngine.process(titleTemplate, context);
         helper.setText(htmlContent, true);

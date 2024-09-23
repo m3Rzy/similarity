@@ -4,18 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0978f51a-8e8a-4aed-a36f-ee10a554e084" name="Changes" comment="splitting a monolith into a microservice">
-      <change afterPath="$PROJECT_DIR$/similarity-mail-service/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/similarity-main-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/similarity-main-service/src/main/java/ru/theft/similarity/utils/mail/controller/EmailController.java" beforeDir="false" afterPath="$PROJECT_DIR$/similarity-mail-service/src/main/java/ru/theft/similarity/mail/controller/EmailController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/similarity-main-service/src/main/java/ru/theft/similarity/utils/mail/service/EmailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/similarity-mail-service/src/main/java/ru/theft/similarity/mail/service/EmailService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/similarity-main-service/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/similarity-main-service/src/main/resources/application.yaml" afterDir="false" />
+    <list default="true" id="0978f51a-8e8a-4aed-a36f-ee10a554e084" name="Changes" comment="mail-service added new thymeleaf template">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/similarity-mail-service/src/main/java/ru/theft/similarity/mail/controller/EmailController.java" beforeDir="false" afterPath="$PROJECT_DIR$/similarity-mail-service/src/main/java/ru/theft/similarity/mail/controller/EmailController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/similarity-mail-service/src/main/java/ru/theft/similarity/mail/service/EmailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/similarity-mail-service/src/main/java/ru/theft/similarity/mail/service/EmailService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/similarity-main-service/src/main/java/ru/theft/similarity/task/controller/TaskController.java" beforeDir="false" afterPath="$PROJECT_DIR$/similarity-main-service/src/main/java/ru/theft/similarity/task/controller/TaskController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,7 +61,7 @@
     "Maven.similarity [package].executor": "Run",
     "Maven.similarity [validate].executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "without-kafka",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/Users/hoiboi/Desktop/Projects/similarity/similarity-mail-service"
   }
@@ -194,7 +187,15 @@
       <option name="project" value="LOCAL" />
       <updated>1727083737798</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="mail-service added new thymeleaf template">
+      <option name="closed" value="true" />
+      <created>1727087299536</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1727087299536</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -216,6 +217,7 @@
     <MESSAGE value="added Dockerfile &amp; docker-compose files" />
     <MESSAGE value="added email sender service in monolith" />
     <MESSAGE value="splitting a monolith into a microservice" />
-    <option name="LAST_COMMIT_MESSAGE" value="splitting a monolith into a microservice" />
+    <MESSAGE value="mail-service added new thymeleaf template" />
+    <option name="LAST_COMMIT_MESSAGE" value="mail-service added new thymeleaf template" />
   </component>
 </project>

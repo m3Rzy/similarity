@@ -13,10 +13,11 @@ public class EmailController {
 
     private EmailService emailService;
 
-    @PostMapping("/sendHtml")
+    @PostMapping
     public ResponseEntity<?> sendHtmlEmail(@RequestParam String to,
-                                                @RequestParam String subject) throws MessagingException {
-        emailService.sendHtmlMessage(to, subject, "notification");
+                                           @RequestParam String subject,
+                                           @RequestParam String taskTitle) throws MessagingException {
+        emailService.sendHtmlMessage(to, subject, "notification", taskTitle);
         return ResponseEntity
                 .status(200)
                 .body("Уведомление было успешно отправлено на почту: " + to
