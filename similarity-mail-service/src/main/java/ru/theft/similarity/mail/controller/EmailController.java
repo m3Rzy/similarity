@@ -16,8 +16,10 @@ public class EmailController {
     @PostMapping
     public ResponseEntity<?> sendHtmlEmail(@RequestParam String to,
                                            @RequestParam String subject,
-                                           @RequestParam String taskTitle) throws MessagingException {
-        emailService.sendHtmlMessage(to, subject, "notification", taskTitle);
+                                           @RequestParam String taskTitle,
+                                           @RequestParam String created,
+                                           @RequestParam String status) throws MessagingException {
+        emailService.sendHtmlMessage(to, subject, "notification", taskTitle, created, status);
         return ResponseEntity
                 .status(200)
                 .body("Уведомление было успешно отправлено на почту: " + to

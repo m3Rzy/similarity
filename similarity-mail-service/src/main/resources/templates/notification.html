@@ -30,12 +30,16 @@
             font-size: 1.8rem;
             margin-bottom: 20px;
         }
-        p {
+        .task-info {
+            margin: 20px 0;
+            text-align: left;
+        }
+        .task-info p {
             font-size: 1rem;
             color: #333333;
-            margin: 10px 0;
+            margin: 5px 0;
         }
-        .task-name {
+        span {
             font-weight: bold;
             color: #2C3E50;
         }
@@ -54,7 +58,7 @@
             h1 {
                 font-size: 1.5rem;
             }
-            p {
+            .task-info p {
                 font-size: 0.95rem;
             }
         }
@@ -66,7 +70,7 @@
             h1 {
                 font-size: 1.2rem;
             }
-            p {
+            .task-info p {
                 font-size: 0.85rem;
             }
             .footer {
@@ -78,9 +82,14 @@
 <body>
 <div class="container">
     <h1>Задача успешно создана!</h1>
-    <p>Задача с названием <span class="task-name" th:text="${taskName}"></span> была успешно создана и добавлена в список.</p>
+    <div class="task-info">
+        <p>Название задачи: <span th:text="${taskName}"></span></p>
+        <p>Время создания: <span th:text="${creationTime}"></span></p>
+        <p>Статус задачи: <span th:text="${taskStatus}"></span></p>
+    </div>
     <div class="footer">
         &copy; 2024 hoiboi inc. All rights reserved.
-    </div></div>
+    </div>
+</div>
 </body>
 </html>

@@ -61,11 +61,11 @@ public class TaskController {
         String emailServiceUrl = "http://similarity-mail-service:8081/email";
         String recipient = "demeiz@yandex.ru";
         String subject = "Задача успешно создана!";
-        String taskTitle = taskDto.getTitleTaskDto();
 
-        // Отправляем запрос на email-сервис
         String emailRequestUrl = emailServiceUrl + "?to=" + recipient + "&subject=" + subject
-                + "&taskTitle=" + taskTitle;
+                + "&taskTitle=" + taskDto.getTitleTaskDto() + "&created=" + taskDto.getCreatedAtTaskDto()
+                + "&status=" + taskDto.getStatusTaskDto().getStatusTitle();
+
         restTemplate.postForEntity(emailRequestUrl, null, String.class);
         return ResponseEntity
                 .status(201)

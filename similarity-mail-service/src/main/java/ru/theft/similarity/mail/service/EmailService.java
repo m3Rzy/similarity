@@ -15,7 +15,8 @@ public class EmailService {
     private JavaMailSender mailSender;
     private SpringTemplateEngine templateEngine;
 
-    public void sendHtmlMessage(String to, String subject, String titleTemplate, String taskTitle)
+    public void sendHtmlMessage(String to, String subject, String titleTemplate, String taskTitle,
+                                String creationTime, String taskStatus)
             throws MessagingException {
         MimeMessage message = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
@@ -24,6 +25,8 @@ public class EmailService {
         helper.setSubject(subject);
         Context context = new Context();
         context.setVariable("taskName", taskTitle);
+        context.setVariable("creationTime", creationTime); // Добавлено время создания
+        context.setVariable("taskStatus", taskStatus); // Добавлен статус задачи
 
         String htmlContent = templateEngine.process(titleTemplate, context);
         helper.setText(htmlContent, true);
