@@ -1,9 +1,9 @@
 version: '3.8'
 services:
-  similarity:
-    build: ./
-    image: similarity
-    container_name: similarity_container
+  similarity-main-service:
+    build: ./similarity-main-service
+    image: similarity-main-service
+    container_name: similarity-main-service_container
     ports:
       - "8080:8080"
     depends_on:

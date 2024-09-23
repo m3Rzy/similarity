@@ -7,13 +7,18 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="similarity" />
+        <module name="similarity-main-service" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="similarity" target="17" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="similarity" options="-parameters" />
+      <module name="similarity-main-service" options="-parameters" />
+      <module name="similarity-main-service (1)" options="" />
     </option>
   </component>
 </project>
